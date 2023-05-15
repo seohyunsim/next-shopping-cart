@@ -1,14 +1,17 @@
 // @ts-ignore
 import { connectDB } from "@util/database";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../auth/[...nextauth]";
 
 export default async function handler(req: any, res: any) {
   // @ts-ignore
   let db = (await connectDB).db("forum");
-  let result = await db.collection("post").find().toArray();
+  const session = await getServerSession(req, res, authOptions);
 
-  if (req.method == "GET") {
-    res.status(200).json(result);
+  if (session) {
+    req.body.author = session?.user?.email;
   }
+
   if (req.method == "POST") {
     const des = req.body;
 
@@ -17,6 +20,8 @@ export default async function handler(req: any, res: any) {
     }
 
     try {
+      console.log(req.body);
+
       await db.collection("post").insertOne(req.body);
       res.redirect(302, "/list");
     } catch (error) {
