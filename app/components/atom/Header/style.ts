@@ -21,13 +21,7 @@ export const Logostyle = css`
   align-items: center;
   gap: 15px;
 
-  a {
-    text-decoration-line: none;
-  }
-
   h2 {
-    color: ${COLOR.white};
-
     margin-bottom: 20px;
     font-weight: 900;
     font-size: 30px;

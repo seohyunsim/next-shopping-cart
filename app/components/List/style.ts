@@ -2,7 +2,7 @@ import { COLOR } from "@constans/COLOR";
 import { css } from "@emotion/react";
 
 export const WrapStyle = css`
-  padding: 8em 0em;
+  padding: 8em 10em;
 
   display: flex;
   flex-wrap: wrap;
