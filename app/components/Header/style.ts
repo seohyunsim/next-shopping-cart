@@ -11,6 +11,9 @@ export const WrapStyle = css`
   display: flex;
   align-items: center;
   justify-content: space-around;
+
+  position: fixed;
+  top: 0;
 `;
 
 export const Logostyle = css`
@@ -18,7 +21,13 @@ export const Logostyle = css`
   align-items: center;
   gap: 15px;
 
+  a {
+    text-decoration-line: none;
+  }
+
   h2 {
+    color: ${COLOR.white};
+
     margin-bottom: 20px;
     font-weight: 900;
     font-size: 30px;

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { randomImage } from "@api/randomImage";
+import { ContentStyle, WrapStyle } from "./style";
+import Cart from "@assets/cart_icon.svg";
 
 interface ImageItem {
   albumId: number;
@@ -26,13 +28,16 @@ const List = () => {
   }, []);
 
   return (
-    <div>
+    <div css={WrapStyle}>
       {image.map((item: ImageItem, idx: number) => {
         return (
-          <>
-            <img key={item.id} src={item.url} alt={item.title} />
-            <span key={idx}>{item.title}</span>
-          </>
+          <div css={ContentStyle} key={item.id}>
+            <img src={item.url} alt={item.title} />
+            <div>
+              <span>{item.title}</span>
+              <Cart />
+            </div>
+          </div>
         );
       })}
     </div>
