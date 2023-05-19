@@ -1,15 +1,15 @@
 import { CostStyle, WrapStyle } from "./style";
 import { useRouter } from "next/router";
 import { ImageItem, useListItem } from "@hooks/useListItem";
-import { usePopup } from "@hooks/usePopup";
 import Hr from "@components/atom/Hr/Hr";
+import { useSetCart } from "@hooks/useSetCart";
 
 const Detail = () => {
-  const { PopupOpen, onPopupOpen } = usePopup();
   const router = useRouter();
   const item = useListItem();
   const id = Number(router.query.id);
   const detail: ImageItem = item[id - 1];
+  const setCart = useSetCart();
 
   return (
     <div css={WrapStyle} key={detail?.id}>
@@ -20,8 +20,8 @@ const Detail = () => {
         <span>금액</span>
         <span>{detail?.id}원</span>
       </div>
-      <button onClick={onPopupOpen}>장바구니</button>
-      {PopupOpen()}
+      <button onClick={() => setCart.addItem(detail)}>장바구니</button>
+      {setCart.PopupOpen()}
     </div>
   );
 };

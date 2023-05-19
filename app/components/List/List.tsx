@@ -1,13 +1,13 @@
 import { ContentStyle, WrapStyle } from "./style";
 import Cart from "@assets/cart_icon.svg";
 import { ImageItem, useListItem } from "@hooks/useListItem";
-import { usePopup } from "@hooks/usePopup";
 import { useRouter } from "next/router";
+import { useSetCart } from "@hooks/useSetCart";
 
 const List = () => {
-  const { PopupOpen, onPopupOpen } = usePopup();
   const image = useListItem();
   const router = useRouter();
+  const setCart = useSetCart();
 
   return (
     <div css={WrapStyle}>
@@ -23,12 +23,12 @@ const List = () => {
               <span onClick={() => router.push(`detail/${item.id}`)}>
                 {item.title}
               </span>
-              <Cart onClick={onPopupOpen} />
+              <Cart onClick={() => setCart.addItem(item)} />
             </div>
           </div>
         );
       })}
-      {PopupOpen()}
+      {setCart.PopupOpen()}
     </div>
   );
 };

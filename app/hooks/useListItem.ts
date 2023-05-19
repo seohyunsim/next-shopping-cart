@@ -7,6 +7,7 @@ export interface ImageItem {
   title: string;
   url: string;
   thumbnailUrl: string;
+  count?: number;
 }
 
 export const useListItem = () => {
